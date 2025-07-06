@@ -67,3 +67,5 @@ def cleaning_file():
         df = df.rename(mapper=renamer, axis=1)
         partition=f"{file[:4]}/{file[14:16]}/{file[11:13]}/{file[8:10]}"
         save_file(df, partition)
+
+cleaning_file()
