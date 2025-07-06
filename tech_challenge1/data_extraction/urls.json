@@ -1,0 +1,23 @@
+{
+    "Producao": "opcao=opt_02",
+    "Comercializacao": "opcao=opt_04",
+    "Processamento": [
+        {"proc_viniferas": "subopcao=subopt_01&opcao=opt_03"},
+        {"proc_americanas_hibridas":"subopcao=subopt_02&opcao=opt_03"},
+        {"proc_uvas_mesa":"subopcao=subopt_03&opcao=opt_03"},
+        {"proc_sem_classificacao":"subopcao=subopt_04&opcao=opt_03"}
+    ],
+    "Importacao": [
+        {"imp_vinho":"subopcao=subopt_01&opcao=opt_05"},
+        {"imp_espumantes":"subopcao=subopt_02&opcao=opt_05"},
+        {"imp_uvas_frescas":"subopcao=subopt_03&opcao=opt_05"},
+        {"imp_uvas_passas":"subopcao=subopt_04&opcao=opt_05"},
+        {"imp_suco":"subopcao=subopt_05&opcao=opt_05"}
+    ],
+    "Exportacao": [
+        {"exp_vinho":"subopcao=subopt_01&opcao=opt_06"},
+        {"exp_espumantes":"subopcao=subopt_02&opcao=opt_06"},
+        {"exp_uva":"subopcao=subopt_03&opcao=opt_06"},
+        {"exp_suco":"subopcao=subopt_04&opcao=opt_06"}
+    ]
+}

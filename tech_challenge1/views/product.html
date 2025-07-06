@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ request.url.path }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Dados de {{ request.url.path }}- Ano {{ ano }}</h1>
+        <div>
+            <a href="/" class="btn btn-secondary me-2">Home</a>
+        </div>
+    </div>
+
+    <form method="get" action="{{ request.url.path }}" class="mb-4">
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label for="ano" class="col-form-label">Selecionar Ano:</label>
+            </div>
+            <div class="col-auto">
+                <select name="ano" id="ano" class="form-select" onchange="this.form.submit()">
+                    {% for y in range(1970, 2025) %}
+                        <option value="{{ y }}" {% if ano == y|string %}selected{% endif %}>{{ y }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </form>
+
+    <div class="table-responsive">
+        {{ tabela_html | safe }}
+    </div>
+</body>
+</html>
