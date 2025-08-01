@@ -52,20 +52,19 @@ def save_file(df, partition:str):
             df.to_parquet(f'{new_dir}/{file_name}', engine='pyarrow')
     except Exception as e:
         print("except")
-        return {"message_error": f"It was possible create a new dir\n{e}"}
+        return {"message_error": f"It was not possible create a new dir\n{e}"}
 
-def cleaning_file():
+def transform_file():
     files = get_files(data_path)    
     for file in files:
         df = pd.read_csv(f"{data_path}{file}", sep=";", encoding="utf-8")
-        df = df.drop(df.columns[4], axis=1)
         renamer = {
             df.columns[0] : "Codigo",
             df.columns[1] : "Acao",
-            df.columns[3] : "Part. (%)"
+            df.columns[3] : "Qtde. Teorica"
         }
         df = df.rename(mapper=renamer, axis=1)
         partition=f"{file[:4]}/{file[14:16]}/{file[11:13]}/{file[8:10]}"
         save_file(df, partition)
 
-cleaning_file()
+transform_file()
