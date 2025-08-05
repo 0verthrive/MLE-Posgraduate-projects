@@ -11,6 +11,7 @@ load_dotenv()
 url = os.getenv("URL_PATH")
 download_path = os.getenv("DOWNLOAD_PATH")
 data_path = os.getenv("NEW_PATH")
+s3 = os.getenv("CDK_S3_PATH")
 
 print(url, download_path, data_path)
 
@@ -46,7 +47,8 @@ def save_file(df, partition:str):
     file_name = f'{uuid.uuid1()}.parquet'
     try:
         print('try create a dir')
-        new_dir = f'{data_path}pq_files/{partition}'
+        new_dir = f'{s3}{partition}'
+        print()
         if not os.path.exists(new_dir):
             os.makedirs(new_dir)
             df.to_parquet(f'{new_dir}/{file_name}', engine='pyarrow')
@@ -58,12 +60,6 @@ def transform_file():
     files = get_files(data_path)    
     for file in files:
         df = pd.read_csv(f"{data_path}{file}", sep=";", encoding="utf-8")
-        renamer = {
-            df.columns[0] : "Codigo",
-            df.columns[1] : "Acao",
-            df.columns[3] : "Qtde. Teorica"
-        }
-        df = df.rename(mapper=renamer, axis=1)
         partition=f"{file[:4]}/{file[14:16]}/{file[11:13]}/{file[8:10]}"
         save_file(df, partition)
 

@@ -1,0 +1,27 @@
+############ S3 Bucket
+S3:
+  bucket_name: 'b3-bucket-mle'
+  versioned: False
+  assets: 'source/s3/'
+  prefix: 'raw/'
+
+
+############ Lambda
+Lambda:
+  role: 'role/resources_lambda'
+  function_name: 'trigger_glue_job'
+  assets: 'source/lambda/'
+  glue_job_name: 'job_refinamento_b3'
+
+
+############ Glue
+Glue:
+  assets: 'source/glue/'
+  job_name: 'job_refinamento_b3'
+  role: 'role/resources_glue'
+  script: 'glue/scripts/'
+  target: 'refined/'
+  source: 'raw/'
+  temp: 'glue/temporary/'
+  database_name: 'b3_catalog_db'
+  table_name: 'refined_ibov'
