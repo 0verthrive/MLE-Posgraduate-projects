@@ -12,7 +12,7 @@ Automatizar o processamento de dados do pregão da B3, organizando os dados em c
 
 ## 🧱 Arquitetura
 
-![Arquitetura do Projeto](image.png)
+![Arquitetura do Projeto](img/image.png)
 
 ---
 
@@ -166,3 +166,58 @@ ORDER BY qtde_teorica DESC;
 
 ```
 
+---
+
+## 📷 Evidências de Execução da Pipeline
+
+Abaixo estão as evidências da criação dos recursos e execução do pipeline de dados na AWS.
+
+---
+
+### 🏗️ 1. Criação das Stacks no CloudFormation
+
+Visualização das stacks geradas pelo AWS CDK:
+
+![Stacks no CloudFormation](img/image-1.png)
+
+---
+
+### 🗂️ 2. Estrutura do Bucket S3
+
+#### • Pastas criadas automaticamente:
+
+![Estrutura de Pastas no S3](img/image-2.png)
+
+#### • Configuração de notificação por evento (event notification):
+
+![Notificação de Eventos no S3](img/image-3.png)
+
+---
+
+### ⚙️ 3. Função Lambda
+
+Código da função responsável por acionar o Glue Job ao detectar novos arquivos:
+
+![Lambda Function](img/image-4.png)
+
+---
+
+### 🔄 4. Glue Job
+
+#### • Script de transformação utilizado:
+
+![Script do Glue](img/image-5.png)
+
+#### • Histórico de execuções bem-sucedidas:
+
+![Execuções do Glue Job](img/image-6.png)
+
+---
+
+### 🔍 5. Consulta no Athena
+
+Exemplo de consulta SQL sobre os dados refinados:
+
+![Resultado da Consulta no Athena](img/image-7.png)
+
+---
