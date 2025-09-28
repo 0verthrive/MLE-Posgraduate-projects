@@ -1,0 +1,24 @@
+# Ignore virtual environment
+env/
+config/enviroments.yaml
+
+# Ignore files test ipynb
+te.ipynb
+
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+
+# Ignore VSCode settings
+.vscode/
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore compiled files
+*.so
+*.pyd
+
+# Ignore environment/config files
+.env
+*.env

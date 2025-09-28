@@ -1,0 +1,32 @@
+{
+    "mounth_09_25":{
+        "2025-09-26": {
+            "valor_reais": "2.124,03",
+            "variacao_dia": "0,10%",
+            "variacao_mes": "-8,57%",
+            "valor_dolar": "397,76"
+        },
+        "2025-09-25": {
+            "valor_reais": "2.121,88",
+            "variacao_dia": "2,25%",
+            "variacao_mes": "-8,66%",
+            "valor_dolar": "395,28"
+        },
+        "...": "..."
+    },
+    "mounth_08_25":{
+        "2025-08-26": {
+            "valor_reais": "2.322,03",
+            "variacao_dia": "1,10%",
+            "variacao_mes": "-5,57%",
+            "valor_dolar": "450,76"
+        },
+        "2025-08-25": {
+            "valor_reais": "2.297,88",
+            "variacao_dia": "0,25%",
+            "variacao_mes": "-5,66%",
+            "valor_dolar": "445,28"
+        },
+        "...": "..."
+    }
+}
