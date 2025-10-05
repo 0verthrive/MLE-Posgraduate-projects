@@ -5,6 +5,10 @@ config/enviroments.yaml
 # Ignore files test ipynb
 te.ipynb
 
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+.cache.sqlite
+
 # Ignore Python cache
 __pycache__/
 *.py[cod]

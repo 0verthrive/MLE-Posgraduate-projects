@@ -9,7 +9,7 @@ cache_session = requests_cache.CachedSession('.cache', expire_after = -1)
 retry_session = retry(cache_session, retries = 5, backoff_factor = 0.2)
 openmeteo = openmeteo_requests.Client(session = retry_session)
 
-class weather():
+class Weather():
     def __init__(self, start_date, end_date):
         self.url = "https://archive-api.open-meteo.com/v1/archive"
         self.params = {
@@ -23,7 +23,7 @@ class weather():
             }
         self.file_name = f"{start_date}_{end_date}_weather.csv"
         dirname = os.path.dirname(__file__)
-        self.path_file = os.path.join(dirname, f'../source/training_data/{self.file_name}')
+        self.path_file = os.path.join(dirname, f'../source/training_data/raw_files/weather/{self.file_name}')
 
     def get_weather(self):
         return openmeteo.weather_api(self.url, params=self.params)[0]
