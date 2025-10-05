@@ -15,8 +15,10 @@ class Convert:
         
     def csv_from_excel(self, file_path):
         file = self.get_files(file_path)
+        print(f'file: {file}')
 
         wb = xlrd.open_workbook(f'{file_path}/{file[0]}')
+        print('Workbook opened!')
         sh = wb.sheet_by_name('Plan 1')
         
         csv_file = open(f'{file_path}/{file[0].split(".")[0]}.csv', 'w', newline='', encoding='utf-8')
@@ -31,6 +33,6 @@ class Convert:
     def run(self):
         self.csv_from_excel(file_path)
 
-if __name__ == "__main__":
-    convert = Convert()
-    convert.run()
+# if __name__ == "__main__":
+#     convert = Convert()
+#     convert.run()

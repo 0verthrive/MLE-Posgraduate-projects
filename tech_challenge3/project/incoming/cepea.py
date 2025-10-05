@@ -6,22 +6,17 @@ import os, time
 
 class Cepea():
     def __init__(self, start_date, end_date):
-        self.url = "https://www.cepea.esalq.usp.br/br/indicador/soja.aspx"
-        dirname = os.path.dirname(__file__)
-        self.dir_dowload = os.path.join(dirname, f"source/training_data/raw_files/cepea/")
+        self.url = "https://www.cepea.org.br/br/consultas-ao-banco-de-dados-do-site.aspx"
         self.start_date = start_date
         self.end_date = end_date
 
-    def inicialize_driver(self):
-        driver = webdriver.Edge()
-        return driver
     
     def selecionar_data(self, driver, campo_xpath: str, ano: str, mes: str, dia: str):
         
         # clicar no campo para abrir o calendário
         campo = driver.find_element(By.XPATH, campo_xpath)
         campo.click()
-        time.sleep(1)
+        time.sleep(2)
 
         # pegar o id do campo (ex: "periodo-de") e construir o root
         campo_id = campo.get_attribute("id")  # ex: "periodo-de"
@@ -50,15 +45,17 @@ class Cepea():
             By.XPATH,
             f'//*[@id="{root_id}"]//div[contains(@class,"picker__day") and not(contains(@class,"picker__day--disabled"))]'
         )
-        time.sleep(2)
+        time.sleep(5)
         for d in dias:
             if d.text.strip() == dia:
                 d.click()
                 break
         time.sleep(5)
 
-    def get_cepea_data(self, driver):
+    def get_cepea_data(self):
+        driver = webdriver.Edge()
         driver.get(self.url)
+        time.sleep(5)
         
         produto = driver.find_element(By.XPATH, '//*[@id="frm-selecionar"]/div[1]/div/div[2]/div/div[2]/div/label[7]')
         produto.click()
@@ -68,21 +65,38 @@ class Cepea():
         produto_tipo.click()
         time.sleep(5)
 
-        # selecionar data inicial: 01/01/2024
-        self.selecionar_data(driver, '//*[@id="periodo-de"]', self.start_date[2], self.start_date[1], self.start_date[0])
+        # 🧠 Quebra e converte as datas
+        meses_map = {
+            "01": "janeiro", "02": "fevereiro", "03": "março", "04": "abril",
+            "05": "maio", "06": "junho", "07": "julho", "08": "agosto",
+            "09": "setembro", "10": "outubro", "11": "novembro", "12": "dezembro"
+        }
 
-        # selecionar data final: 07/01/2024
-        self.selecionar_data(driver, '//*[@id="periodo-ate"]', self.end_date[2], self.end_date[1], self.end_date[0])
+        ano_i, mes_i, dia_i = self.start_date.split('-')
+        ano_f, mes_f, dia_f = self.end_date.split('-')
+
+        mes_i_nome = meses_map[mes_i]
+        mes_f_nome = meses_map[mes_f]
+
+        # 🗓️ Selecionar data inicial
+        self.selecionar_data(driver, '//*[@id="periodo-de"]', ano_i, mes_i_nome, str(int(dia_i)))
+
+        # 🗓️ Selecionar data final
+        self.selecionar_data(driver, '//*[@id="periodo-ate"]', ano_f, mes_f_nome, str(int(dia_f)))
+        
         time.sleep(5)
 
-        gerar_excel= driver.find_element(By.XPATH, '//*[@id="adicionar"]')
+        gerar_excel = driver.find_element(By.XPATH, '//*[@id="adicionar"]')
         gerar_excel.click()
-
-        time.sleep(10) 
+        time.sleep(10)
 
         download = driver.find_element(By.XPATH, '//*[@id="false"]/td[5]/a[2]')
         download.click()
-
-        time.sleep(10)  # esperar o download completar
+        time.sleep(10)
 
         driver.quit()
+
+    
+    def run(self):
+        self.get_cepea_data()
+        print("✅ CEPEA data downloaded!")

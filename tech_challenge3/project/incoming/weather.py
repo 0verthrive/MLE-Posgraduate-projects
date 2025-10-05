@@ -3,11 +3,14 @@ import pandas as pd
 import requests_cache
 from retry_requests import retry
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 
 cache_session = requests_cache.CachedSession('.cache', expire_after = -1)
 retry_session = retry(cache_session, retries = 5, backoff_factor = 0.2)
 openmeteo = openmeteo_requests.Client(session = retry_session)
+file_path = os.getenv("WEATHER_PATH")
 
 class Weather():
     def __init__(self, start_date, end_date):
@@ -23,7 +26,7 @@ class Weather():
             }
         self.file_name = f"{start_date}_{end_date}_weather.csv"
         dirname = os.path.dirname(__file__)
-        self.path_file = os.path.join(dirname, f'../source/training_data/raw_files/weather/{self.file_name}')
+        self.path_file = os.path.join(dirname, f'{file_path}/{self.file_name}')
 
     def get_weather(self):
         return openmeteo.weather_api(self.url, params=self.params)[0]
@@ -70,7 +73,7 @@ class Weather():
         self.save_file(dataframe, self.path_file)
         return f"Dataframe de clima {self.file_name} salvo com sucesso!"
     
-## teste
+# # teste
 # if __name__ == "__main__":
-#     weather = weather("2024-01-01", "2024-01-07")
+#     weather = Weather("2024-01-01", "2024-01-07")
 #     weather.run()
