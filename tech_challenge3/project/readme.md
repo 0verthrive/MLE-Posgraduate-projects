@@ -49,6 +49,8 @@ project/
 ```
 
 ## 💻 Sobre a Aplicação
+- **Aplicação implementada**:
+   - https://mle-posgraduate-projects-zncu2eqrvrdzvquro4yvda.streamlit.app/
 
 A interface da aplicação, desenvolvida em Streamlit, possui duas abas principais:
 
