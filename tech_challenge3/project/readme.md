@@ -48,6 +48,15 @@ project/
 └── readme.md         # Documentação principal
 ```
 
+## 💻 Sobre a Aplicação
+
+A interface da aplicação, desenvolvida em Streamlit, possui duas abas principais:
+
+- **Predição** Permite ao usuário visualizar a estimativa dos preços do café para até 1 semana.
+- **Dados Agrupados:** Exibe os dados utilizados para treinar o modelo, facilitando a análise e transparência do processo.
+
+Além disso, a aplicação apresenta gráficos de tendência para auxiliar na interpretação dos resultados e na tomada de decisão.
+
 ## 🖥️ Como Executar Localmente
 
 1. **Crie um ambiente virtual:**
