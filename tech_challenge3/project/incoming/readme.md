@@ -41,7 +41,16 @@ O objetivo final é **fornecer insumos para modelos de previsão de custos do ca
 - **Função**:  
   - Utiliza **Selenium** para navegar na página.  
   - Seleciona as opções do **café robusta**. 
-  - Faz download dos dados em **.xls**.  
+  - Faz download dos dados em **.xls**.
+
+- **Observações Importantes**:
+  - O processo de coleta via Selenium pode ser demorado devido à automação dos cliques na página.
+  - Caso a data não seja selecionada corretamente durante a execução, feche a aba do navegador e reinicie o processo.
+  - Por padrão, o script está configurado para o navegador Edge. Se desejar utilizar outro navegador, edite o arquivo `cepea.py` na linha 57:
+    ```python
+    driver = webdriver.<nome_do_navegador>()
+    ```
+    Consulte a lista de navegadores suportados e instruções de configuração em: [Selenium Browsers Documentation](https://www.selenium.dev/pt-br/documentation/webdriver/browsers/).
 
 - **Exemplo de saída estruturada**:  
 ```json
@@ -68,6 +77,9 @@ O objetivo final é **fornecer insumos para modelos de previsão de custos do ca
 - **Função**:  
   - Converte arquivos **.xls** para **.csv**.  
   - Implementado com **xlrd** e **csv**  
+
+- **Observação**:
+  - Se a quantidade de dados for muito grande, ele não suportará fazer a conversão.
 
 ---
 

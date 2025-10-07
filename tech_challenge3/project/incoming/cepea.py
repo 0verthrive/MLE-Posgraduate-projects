@@ -45,7 +45,8 @@ class Cepea():
             By.XPATH,
             f'//*[@id="{root_id}"]//div[contains(@class,"picker__day") and not(contains(@class,"picker__day--disabled"))]'
         )
-        time.sleep(5)
+        time.sleep(10)
+
         for d in dias:
             if d.text.strip() == dia:
                 d.click()
