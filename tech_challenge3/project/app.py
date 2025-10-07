@@ -22,16 +22,17 @@ st.set_page_config(
 # -----------------------------
 # 📦 Carregar modelo e dados
 # -----------------------------
+def get_file(path, tipo):
+    print(path, tipo)
+    return [f for f in os.listdir(path) if tipo in f.lower()][0]
+
 @st.cache_resource
 def load_model():
-    return joblib.load(f"{path_model}/model/modelo_random_forest.pkl")
-
-def get_file():
-    return [f for f in os.listdir(f"{path_training}") if '.csv' in f.lower()][0]
+    return joblib.load(f"{path_model}/{get_file(path_model, '.pkl')}")
 
 @st.cache_data
 def load_data():
-    dados_agrupados = pd.read_csv(f"{path_training}/{get_file()}", sep=';', decimal='.')
+    dados_agrupados = pd.read_csv(f"{path_training}/{get_file(path_training, '.csv')}", sep=';', decimal='.')
     return dados_agrupados
 
 model = load_model()
