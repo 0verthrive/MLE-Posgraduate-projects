@@ -36,3 +36,6 @@ O modelo utiliza as seguintes variáveis como entrada:
 | RandomForestRegressor (refinado) | 6362.71    | 0.9033 |
 
 O **RandomForestRegressor refinado** apresentou o melhor desempenho, sendo escolhido para o projeto.
+
+- **Observação**:
+    - O modelo será atualizado offline e implementado a nova versão em prod.
