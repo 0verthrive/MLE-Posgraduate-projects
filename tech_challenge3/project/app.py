@@ -5,6 +5,10 @@ import joblib
 import datetime
 import matplotlib.pyplot as plt
 import os
+from dotenv import load_dotenv
+load_dotenv()
+path_training= os.getenv('TRAINING_DATA_PATH')
+path_model = os.getenv('MODEL_PATH')
 
 # -----------------------------
 # 🔧 Configurações iniciais
@@ -20,14 +24,14 @@ st.set_page_config(
 # -----------------------------
 @st.cache_resource
 def load_model():
-    return joblib.load("source/model/modelo_random_forest.pkl")
+    return joblib.load(f"{path_model}/model/modelo_random_forest.pkl")
 
 def get_file():
-    return [f for f in os.listdir("source/training_data") if '.csv' in f.lower()][0]
+    return [f for f in os.listdir(f"{path_training}") if '.csv' in f.lower()][0]
 
 @st.cache_data
 def load_data():
-    dados_agrupados = pd.read_csv(f"source/training_data/{get_file()}", sep=';', decimal='.')
+    dados_agrupados = pd.read_csv(f"{path_training}/{get_file()}", sep=';', decimal='.')
     return dados_agrupados
 
 model = load_model()
