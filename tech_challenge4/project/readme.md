@@ -59,7 +59,7 @@ project/
 ## 🚀 Deploy da Aplicação
 
 📌 **Link do deploy:**  
-> _(Ainda não disponível)_
+> [Aplicação implementada](https://fiap-mle-challenge-man4xipjrkbxvp2csoyxij.streamlit.app/)
 
 ---
 
