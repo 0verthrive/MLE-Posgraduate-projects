@@ -1,0 +1,9 @@
+{
+  "app": "python app.py",
+  "context": {
+    "project_name": "passos-magicos",
+    "stage": "dev",
+    "account": "111111111111",
+    "region": "us-east-1"
+  }
+}
